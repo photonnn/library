@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,40 @@
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
-
-
+    <div class="header">
+        <button id="add">Add</button>
+    </div>
+    <form action="" method="get">
+        <div class="form-container">
+            <div>
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" maxlength="50">
+            </div>
+            <div>
+                <label for="author">Author:</label>
+                <input type="text" name="author" id="author" maxlength="50"> 
+            </div>
+            <div>
+                <label for="pages">Pages:</label>
+                <input type="number" name="pages" id="pages" min="0">
+            </div>
+            <div>
+                <label for="read">Finished:</label>
+                <input type="checkbox" name="read" id="read">
+            </div>
+            <div>
+                <button type="button" class="red">No</button>
+                <button type="button" class="green">Yes</button>
+            </div>
+        </div>
+    </form>
+    <div class="content">
+        <!-- Place for books-->
+    </div>
+    <div class="cover"></div>
     <script src="script.js"></script>
 </body>
+
 </html>
