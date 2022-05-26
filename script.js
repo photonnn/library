@@ -1,15 +1,17 @@
 
 const addbtn = document.querySelector("#add");
 const form = document.querySelector("form");
-form.submit();
 const cover = document.querySelector(".cover");
 const content = document.querySelector(".content");
 const redbtn = document.querySelector(".red");
+const grnbtn = document.querySelector(".green");
 
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const read = document.querySelector("#read");
+
+let myLibrary = [];
 
 
 addbtn.addEventListener("click", () => {
@@ -22,11 +24,14 @@ redbtn.addEventListener("click", () => {
     cover.style.display = "none";
 });
 
-form.addEventListener("submit", () => {
-    addDivToContentDiv();
-    form.style.visibility = "hidden";
-    cover.style.display = "none"
+grnbtn.addEventListener("click", () => {
+    if (validInputs()) {
+        addDivToContentDiv();
+        form.style.visibility = "hidden";
+        cover.style.display = "none";
+    }
 });
+
 
 function addDivToContentDiv() {
     const div = document.createElement("div");
@@ -35,7 +40,18 @@ function addDivToContentDiv() {
     addBookToLibrary(div);
 }
 
-let myLibrary = [];
+function validInputs() {
+    if (title.value == "") {
+        alert("Please fill out the title field!");
+    } else if (author.value == "") {
+        alert("Please fill out the author field!");
+    } else if (+pages.value <= 0 || +pages.value > 13095) {
+        alert("Pages value only between 1 and 13095!");
+    }
+
+    return title.value != "" && author.value != "" && +pages.value > 0 && 
+        +pages.value <= 13095;
+}
 
 function book() {
     this.title = "";
@@ -112,14 +128,7 @@ function assignValuesToObject(obj) {
     obj.pages = pages.value;
     obj.read = read.checked;
     myLibrary.push(obj);
-    clearForm();
-}
-
-function clearForm() {
-    title.value = "";
-    author.value = "";
-    pages.value = "";
-    read.checked = false;
+    form.reset();
 }
 
 // we can remove them properly because we assigned them the same id
