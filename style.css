@@ -27,12 +27,8 @@ button {
     opacity: 90%;
 }
 
-form .on {
-    display: block;
-}
-
 form {
-    display: none;
+    visibility: hidden;
     position: absolute;
     left: calc(50% - 250px);
     top: calc(50% - 250px);

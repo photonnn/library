@@ -15,16 +15,21 @@ const content = document.querySelector(".content");
 
 
 addbtn.addEventListener("click", () => {
-    changeDisplay("block");
+    form.style.visibility = "visible";
+    cover.style.display = "block";
 });
 
 redbtn.addEventListener("click", () => {
-    changeDisplay("none");
+    form.style.visibility = "hidden";
+    cover.style.display = "none";
 });
 
-greenbtn.addEventListener("click", () => {
+const Form = document.querySelector("form");
+
+Form.addEventListener("submit", () => {
     addDivToContentDiv();
-    changeDisplay("none");
+    form.style.visibility = "hidden";
+    cover.style.display = "none"
 });
 
 function addDivToContentDiv() {
