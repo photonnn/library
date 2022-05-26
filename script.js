@@ -1,6 +1,7 @@
 
 const addbtn = document.querySelector("#add");
 const form = document.querySelector("form");
+form.submit();
 const cover = document.querySelector(".cover");
 const content = document.querySelector(".content");
 const redbtn = document.querySelector(".red");
