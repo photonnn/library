@@ -89,9 +89,15 @@ function addContentToBook(obj, div) {
                 }
             });
         } else {
-            p.textContent = obj[em];
-            if (countP == 3) {
-                p.textContent += " pages"
+            if (countP == 3 && obj[em] != "") {
+                if (obj[em] > 13095) {
+                    p.textContent = "13095 pages";
+                } else {
+                    p.textContent = obj[em] + " pages"
+                }
+                
+            } else {
+                p.textContent = obj[em];
             }
             countP++;
             div.appendChild(p);
@@ -132,3 +138,15 @@ function removeFromMyLibrary(button) {
         }
     }
 }
+
+// temp fix
+function enforceMinMax(el){
+    if(el.value != ""){
+      if(parseInt(el.value) < parseInt(el.min)){
+        el.value = el.min;
+      }
+      if(parseInt(el.value) > parseInt(el.max)){
+        el.value = el.max;
+      }
+    }
+  }

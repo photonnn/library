@@ -21,11 +21,12 @@
             </div>
             <div>
                 <label for="author">Author:</label>
-                <input type="text" name="author" id="author" maxlength="50"> 
+                <input type="text" name="author" id="author" maxlength="50">
             </div>
             <div>
                 <label for="pages">Pages:</label>
-                <input type="number" name="pages" id="pages" min="0">
+                <input type="number" name="pages" id="pages" min="0" max="13095"
+                    onkeyup=enforceMinMax(this)>
             </div>
             <div>
                 <label for="read">Finished:</label>
