@@ -2,16 +2,13 @@
 const addbtn = document.querySelector("#add");
 const form = document.querySelector("form");
 const cover = document.querySelector(".cover");
-
+const content = document.querySelector(".content");
 const redbtn = document.querySelector(".red");
-const greenbtn = document.querySelector(".green");
 
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const read = document.querySelector("#read");
-
-const content = document.querySelector(".content");
 
 
 addbtn.addEventListener("click", () => {
@@ -24,9 +21,7 @@ redbtn.addEventListener("click", () => {
     cover.style.display = "none";
 });
 
-const Form = document.querySelector("form");
-
-Form.addEventListener("submit", () => {
+form.addEventListener("submit", () => {
     addDivToContentDiv();
     form.style.visibility = "hidden";
     cover.style.display = "none"
@@ -39,11 +34,6 @@ function addDivToContentDiv() {
     addBookToLibrary(div);
 }
 
-function changeDisplay(str) {
-    form.style.display = str;
-    cover.style.display = str;
-}
-
 let myLibrary = [];
 
 function book() {
@@ -53,6 +43,7 @@ function book() {
     this.read = false;
 }
 
+// runs after submitting form
 function addBookToLibrary(div) {
     const obj = new book();
     assignValuesToObject(obj);
@@ -63,11 +54,13 @@ function addBookToLibrary(div) {
     rbtn.dataset.id = obj.id;
     div.appendChild(rbtn);
     rbtn.addEventListener("click", () => {
-        removeFromMyLibrary(rbtn); // bug can't go to 0!
+        removeFromMyLibrary(rbtn);
         rbtn.parentElement.remove();
     })
 }
 
+// add elements to the div corresponding to the object and add id to make 
+// connection between them
 function addContentToBook(obj, div) {
     let countP = 1;
     for (let em in obj) {
@@ -94,21 +87,14 @@ function addContentToBook(obj, div) {
                 }
             });
         } else {
-            if (countP == 3 && obj[em] != "") {
-                if (obj[em] > 13095) {
-                    p.textContent = "13095 pages";
-                } else {
-                    p.textContent = obj[em] + " pages"
-                }
-                
-            } else {
-                p.textContent = obj[em];
+            p.textContent = obj[em];
+            if (countP == 3) {
+                p.textContent += " pages"
             }
             countP++;
             div.appendChild(p);
         }
     }
-
 }
 
 function assignId(obj) {
@@ -135,6 +121,7 @@ function clearForm() {
     read.checked = false;
 }
 
+// we can remove them properly because we assigned them the same id
 function removeFromMyLibrary(button) {
     for (let i = 0; i < myLibrary.length; i++) {
         if (myLibrary[i].id == button.dataset.id) {
@@ -143,15 +130,3 @@ function removeFromMyLibrary(button) {
         }
     }
 }
-
-// temp fix
-function enforceMinMax(el){
-    if(el.value != ""){
-      if(parseInt(el.value) < parseInt(el.min)){
-        el.value = el.min;
-      }
-      if(parseInt(el.value) > parseInt(el.max)){
-        el.value = el.max;
-      }
-    }
-  }
